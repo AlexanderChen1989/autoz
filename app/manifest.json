@@ -37,10 +37,6 @@
     "webRequest",
     "webRequestBlocking"
   ],
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
-  },
   "content_scripts": [
     {
       "matches": [
@@ -62,7 +58,7 @@
       "19": "images/icon-19.png",
       "38": "images/icon-38.png"
     },
-    "default_title": "my new chrome extension",
+    "default_title": "Auto Resize",
     "default_popup": "popup.html"
   },
   "web_accessible_resources": [

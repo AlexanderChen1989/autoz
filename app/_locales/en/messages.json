@@ -1,7 +1,7 @@
 {
   "appName": {
-    "message": "my new chrome extension",
-    "description": "The name of the application"
+    "message": "Auto Resize",
+    "description": "Auto Resize"
   },
   "appDescription": {
     "message": "My Chrome Extension",
