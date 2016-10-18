@@ -4,6 +4,10 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import del from 'del';
 import runSequence from 'run-sequence';
 import {stream as wiredep} from 'wiredep';
+import browserify from 'browserify';
+import es from 'event-stream';
+import source from 'vinyl-source-stream';
+
 
 const $ = gulpLoadPlugins();
 
@@ -29,6 +33,14 @@ function lint(files, options) {
 }
 
 gulp.task('lint', lint('app/scripts.babel/**/*.js', {
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+      experimentalObjectRestSpread: true
+    }
+  },
   env: {
     es6: true
   }
@@ -80,11 +92,25 @@ gulp.task('chromeManifest', () => {
 });
 
 gulp.task('babel', () => {
-  return gulp.src('app/scripts.babel/**/*.js')
-      .pipe($.babel({
-        presets: ['es2015']
-      }))
-      .pipe(gulp.dest('app/scripts'));
+  const entries = [
+    'background.js',
+    'chromereload.js',
+    'contentscript.js',
+    'options.js',
+    'popup.js'
+  ];
+
+  const tasks = entries.map((file) => {
+    const entry = `app/scripts.babel/${file}`;
+
+    return browserify([entry])
+      .transform("babelify", {presets: ["es2015", "react"]})
+      .bundle()
+      .pipe(source(file))
+      .pipe(gulp.dest('./app/scripts'));
+  });
+
+  return es.merge.apply(null, tasks);
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
