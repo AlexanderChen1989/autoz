@@ -145,7 +145,7 @@ gulp.task('wiredep', () => {
 gulp.task('package', function () {
   var manifest = require('./dist/manifest.json');
   return gulp.src('dist/**')
-      .pipe($.zip('my new chrome extension-' + manifest.version + '.zip'))
+      .pipe($.zip('autoz-' + manifest.version + '.zip'))
       .pipe(gulp.dest('package'));
 });
 
