@@ -2,7 +2,7 @@ const zoom = () => {
   chrome.storage.local.get(
     null,
     ({zoom, autoResize}) => {
-      if (!autoResize) {
+      if (!autoResize || !zoom) {
         return
       }
       document.body.parentElement.style.zoom = `${zoom}%`

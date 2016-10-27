@@ -10,6 +10,9 @@ class App extends React.Component {
     this.state = {autoResize: false, zoom: 100}
     const self = this
     chrome.storage.local.get(null, ({zoom, autoResize}) => {
+      if (!zoom) {
+        zoom = 100
+      }
       self.setState({autoResize, zoom})
       chrome.browserAction.setBadgeText({text: autoResize ? 'ON' : ''});
     })
