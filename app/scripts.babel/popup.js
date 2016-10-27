@@ -62,7 +62,7 @@ class App extends React.Component {
     if (autoResize) {
       chrome.tabs.executeScript({code: `document.body.parentElement.style.zoom = '${zoom}%'`})
     } else {
-      chrome.tabs.executeScript({code: `document.body.parentElement.style.zoom = '100%'`})
+      chrome.tabs.executeScript({code: 'document.body.parentElement.style.zoom = \'100%\''})
     }
 
     return (
