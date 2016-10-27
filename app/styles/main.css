@@ -1,4 +1,21 @@
-body {
-  padding-left: 15px;
-  padding-right: 15px;
+
+
+
+.zoom {
+  display:         flex;
+  justify-content: space-between;
+}
+
+.switch {
+  text-align: center;
+  font-size: 3em;
+  border: dashed 1px darkgray;
+}
+
+.switch .on {
+  color: forestgreen;
+}
+
+.switch .off {
+  color: darkgrey;
 }
